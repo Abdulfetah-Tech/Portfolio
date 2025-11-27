@@ -16,7 +16,7 @@ export const initializeChat = (): Chat => {
   const ai = new GoogleGenAI({ apiKey });
   
   chatSession = ai.chats.create({
-    model: 'gemini-2.5-flash',
+    model: 'gemini-3-pro-preview',
     config: {
       systemInstruction: SYSTEM_INSTRUCTION,
       temperature: 0.7,

@@ -3,9 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Abdulfetah S. Bedru | Full-Stack Developer</title>
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Abdulfetah S. Bedru | Full-Stack Developer & AI Specialist</title>
+    <meta name="description" content="Portfolio of Abdulfetah S. Bedru, a Full-Stack Developer and AI Enthusiast specializing in React, Django, and Machine Learning solutions." />
+    <meta name="keywords" content="Abdulfetah S. Bedru, Full Stack Developer, AI, Machine Learning, React, Django, Ethiopia, Software Engineer" />
+    <meta name="author" content="Abdulfetah S. Bedru" />
+
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://abdulfetah-portfolio.vercel.app/" />
+    <meta property="og:title" content="Abdulfetah S. Bedru | Full-Stack Developer" />
+    <meta property="og:description" content="Explore my projects in AI, IoT, and Full-Stack Web Development. Features an interactive AI resume assistant." />
+    <meta property="og:image" content="https://api.dicebear.com/9.x/avataaars/svg?seed=Abdulfetah&backgroundColor=b6e3f4&clothing=blazerAndShirt&eyes=happy&eyebrows=default&mouth=smile" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Abdulfetah S. Bedru | Full-Stack Developer" />
+    <meta property="twitter:description" content="Explore my projects in AI, IoT, and Full-Stack Web Development." />
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
@@ -16,7 +35,32 @@
             colors: {
               primary: '#6b21a8', // Deep purple from resume
               secondary: '#a855f7',
-              dark: '#1e1b4b',
+              dark: '#0f172a',
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
+              'slide-up': 'slideUp 0.5s ease-out forwards',
+              'zoom-in': 'zoomIn 0.3s ease-out forwards',
+              'slide-in-right': 'slideInRight 0.5s ease-out forwards',
+              'bounce-slow': 'bounce 3s infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              zoomIn: {
+                '0%': { opacity: '0', transform: 'scale(0.95)' },
+                '100%': { opacity: '1', transform: 'scale(1)' },
+              },
+              slideInRight: {
+                '0%': { opacity: '0', transform: 'translateX(20px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' },
+              }
             }
           }
         }
@@ -32,6 +76,15 @@
           -ms-overflow-style: none;
           scrollbar-width: none;
       }
+      html { scroll-behavior: smooth; }
+      
+      /* Gradient Text Utility */
+      .text-gradient {
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(to right, #6b21a8, #3b82f6);
+      }
     </style>
   <script type="importmap">
 {
@@ -40,7 +93,8 @@
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "recharts": "https://aistudiocdn.com/recharts@^2.15.0"
   }
 }
 </script>

@@ -16,7 +16,13 @@ const ChatWidget: React.FC = () => {
     "What are your key skills?",
     "Tell me about the Fetan Digital Platform",
     "What is your experience with AI?",
-    "How can I contact you?"
+    "How can I contact you?",
+    "What certifications do you have?",
+    "Tell me about your work at Sheger Systems",
+    "Explain the Customer Churn project",
+    "What is your educational background?",
+    "Tell me about the OneGov platform",
+    "Do you have experience with AWS?"
   ];
 
   const scrollToBottom = () => {
@@ -83,7 +89,7 @@ const ChatWidget: React.FC = () => {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
       {/* Chat Window */}
       {isOpen && (
-        <div className="mb-4 w-[90vw] sm:w-[400px] h-[500px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 fade-in duration-300">
+        <div className="mb-4 w-[90vw] sm:w-[400px] h-[500px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-slide-up">
           {/* Header */}
           <div className="bg-gradient-to-r from-primary to-secondary p-4 flex justify-between items-center text-white">
             <div className="flex items-center space-x-2">
@@ -92,7 +98,7 @@ const ChatWidget: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-bold text-sm">Abdulfetah's AI Assistant</h3>
-                <p className="text-xs text-purple-100">Powered by Gemini 2.5</p>
+                <p className="text-xs text-purple-100">Powered by Gemini 3.0 Pro</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="hover:bg-white/20 p-1 rounded-full transition hover:rotate-90 duration-300">
@@ -103,7 +109,7 @@ const ChatWidget: React.FC = () => {
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50 scrollbar-hide">
             {messages.map((msg) => (
-              <div key={msg.id} className={`flex ${msg.sender === ChatSender.USER ? 'justify-end' : 'justify-start'}`}>
+              <div key={msg.id} className={`flex ${msg.sender === ChatSender.USER ? 'justify-end' : 'justify-start'} animate-fade-in`}>
                 <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm shadow-sm ${
                   msg.sender === ChatSender.USER 
                     ? 'bg-primary text-white rounded-br-none' 
@@ -128,7 +134,7 @@ const ChatWidget: React.FC = () => {
             
             {/* Example Prompts - Show only when there is just the welcome message */}
             {messages.length === 1 && (
-              <div className="grid grid-cols-1 gap-2 mt-4 px-1">
+              <div className="grid grid-cols-1 gap-2 mt-4 px-1 animate-fade-in delay-200">
                 <p className="text-xs text-slate-400 font-medium mb-1 ml-1">Suggested questions:</p>
                 {examplePrompts.map((prompt, index) => (
                   <button

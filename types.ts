@@ -20,8 +20,27 @@ export interface ProjectItem {
   date: string;
   location: string;
   role: string;
+  problemStatement: string;
   description: string;
   tags: string[];
+  githubUrl?: string;
+  demoUrl?: string;
+}
+
+export interface MetricData {
+  name: string;
+  value: number;
+}
+
+export interface AiProjectItem {
+  id: string;
+  title: string;
+  date: string;
+  problem: string;
+  approach: string;
+  result: string;
+  tags: string[];
+  metricsData?: MetricData[];
   githubUrl?: string;
   demoUrl?: string;
 }

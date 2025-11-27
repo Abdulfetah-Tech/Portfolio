@@ -85,13 +85,13 @@ const Projects: React.FC = () => {
             </>
           ) : (
             PROJECTS.map((project) => (
-                <div key={project.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 flex flex-col h-full">
+                <div key={project.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-100 flex flex-col h-full cursor-pointer" onClick={() => openModal(project)}>
                   <div className="h-48 bg-gradient-to-r from-primary to-secondary flex items-center justify-center overflow-hidden relative">
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300" />
-                    <FolderGit2 className="text-white opacity-30 w-24 h-24 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:opacity-50" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                    <FolderGit2 className="text-white opacity-30 w-24 h-24 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:opacity-60" />
                     
                     {/* Links on Card */}
-                    <div className="absolute top-4 right-4 flex gap-2 z-10">
+                    <div className="absolute top-4 right-4 flex gap-2 z-10 translate-y-[-150%] group-hover:translate-y-0 transition-transform duration-300">
                       {project.githubUrl && (
                         <a 
                           href={project.githubUrl}
@@ -129,7 +129,13 @@ const Projects: React.FC = () => {
                     </div>
                     <p className="text-primary font-medium text-sm mb-4 uppercase tracking-wider">{project.role}</p>
                     
-                    <div className="text-slate-600 leading-relaxed mb-6">
+                    {/* Problem Statement Preview */}
+                    <div className="mb-4 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                        <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">The Challenge</h4>
+                        <p className="text-slate-700 text-sm line-clamp-2">{project.problemStatement}</p>
+                    </div>
+
+                    <div className="text-slate-600 leading-relaxed mb-6 flex-grow">
                       <p className="line-clamp-3">{project.description}</p>
                     </div>
                     
@@ -148,7 +154,7 @@ const Projects: React.FC = () => {
                       </div>
                       
                       <button 
-                        onClick={() => openModal(project)}
+                        onClick={(e) => { e.stopPropagation(); openModal(project); }}
                         className="w-full py-3 px-4 rounded-xl border-2 border-purple-100 text-primary font-semibold hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 flex items-center justify-center group/btn"
                       >
                         View Details
@@ -170,7 +176,7 @@ const Projects: React.FC = () => {
         >
           {/* Modal Content */}
           <div 
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-300"
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative animate-zoom-in"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Sticky Close Button */}
@@ -200,6 +206,12 @@ const Projects: React.FC = () => {
               </div>
 
               <div className="prose prose-slate max-w-none mb-8">
+                {/* Full Problem Statement in Modal */}
+                <div className="bg-purple-50 p-6 rounded-xl border border-purple-100 mb-8">
+                    <h4 className="text-sm font-bold text-primary uppercase tracking-wider mb-2">Problem Statement</h4>
+                    <p className="text-slate-700 leading-relaxed text-lg m-0">{selectedProject.problemStatement}</p>
+                </div>
+
                 <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 border-b border-slate-100 pb-2">Project Overview</h4>
                 <p className="text-slate-600 leading-relaxed text-lg whitespace-pre-wrap">{selectedProject.description}</p>
               </div>

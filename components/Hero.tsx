@@ -5,6 +5,10 @@ import { Download, ChevronRight, Mail } from 'lucide-react';
 const Hero: React.FC = () => {
   const keySkills = ["Full-Stack Development", "AI & Machine Learning", "Data Science", "Network Engineering"];
 
+  // Using DiceBear API for a professional looking avatar based on initials/seed
+  // Replace this URL with your local image path (e.g., "/profile.jpg") when you have one.
+  const profileImage = "https://api.dicebear.com/9.x/avataaars/svg?seed=Abdulfetah&backgroundColor=b6e3f4&clothing=blazerAndShirt&eyes=happy&eyebrows=default&mouth=smile";
+
   return (
     <section className="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[90vh] bg-gradient-to-br from-slate-50 to-purple-50 overflow-hidden">
       {/* Animated Wave Styles */}
@@ -43,8 +47,8 @@ const Hero: React.FC = () => {
       `}</style>
       
       {/* Abstract shapes */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-purple-200 blur-3xl opacity-30"></div>
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-200 blur-3xl opacity-30"></div>
+      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-purple-200 blur-3xl opacity-30 animate-pulse"></div>
+      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-200 blur-3xl opacity-30 animate-pulse" style={{animationDelay: '2s'}}></div>
 
       {/* Wave Animation */}
       <div className="absolute bottom-0 left-0 w-full z-0">
@@ -64,18 +68,18 @@ const Hero: React.FC = () => {
       <div className="container relative mx-auto px-4 z-10">
         <div className="flex flex-wrap items-center">
           <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center lg:text-left">
-            <div className="inline-block px-4 py-1 mb-4 text-xs font-semibold tracking-wide text-primary uppercase bg-purple-100 rounded-full">
+            <div className="inline-block px-4 py-1 mb-4 text-xs font-semibold tracking-wide text-primary uppercase bg-purple-100 rounded-full animate-fade-in">
               Open to Work
             </div>
-            <h1 className="text-5xl font-bold leading-tight mb-4 text-slate-900">
+            <h1 className="text-5xl font-bold leading-tight mb-4 text-slate-900 animate-slide-up">
               Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">{PROFILE.name}</span>
             </h1>
-            <h2 className="text-2xl font-semibold text-slate-600 mb-4">
+            <h2 className="text-2xl font-semibold text-slate-600 mb-4 animate-slide-up delay-100">
               {PROFILE.title}
             </h2>
 
             {/* Key Skills List */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-6">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-6 animate-slide-up delay-200">
               {keySkills.map((skill) => (
                 <span key={skill} className="px-3 py-1 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-full shadow-sm hover:border-primary hover:text-primary transition-colors cursor-default">
                   {skill}
@@ -83,11 +87,11 @@ const Hero: React.FC = () => {
               ))}
             </div>
 
-            <p className="mt-2 text-lg text-slate-500 mb-8 leading-relaxed">
+            <p className="mt-2 text-lg text-slate-500 mb-8 leading-relaxed animate-slide-up delay-300">
               {PROFILE.summary}
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-slide-up delay-500">
               <a 
                 href="#projects" 
                 className="group inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary rounded-lg hover:bg-purple-800 transition-all shadow-lg shadow-purple-500/30"
@@ -111,18 +115,17 @@ const Hero: React.FC = () => {
             </div>
           </div>
           
-          <div className="w-full lg:w-5/12 px-4 mt-12 lg:mt-0">
-            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-2xl rounded-2xl bg-primary bg-opacity-90 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+          <div className="w-full lg:w-5/12 px-4 mt-12 lg:mt-0 animate-slide-in-right">
+            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-2xl rounded-2xl bg-white/30 backdrop-blur-sm border border-white/50 transform rotate-2 hover:rotate-0 transition-transform duration-500 group">
               <img 
-                alt="Abdulfetah S. Bedru" 
-                src="https://picsum.photos/id/1/800/800" 
-                className="w-full align-middle rounded-2xl grayscale mix-blend-luminosity hover:grayscale-0 transition-all duration-500" 
+                alt={PROFILE.name}
+                src={profileImage}
+                className="w-full align-middle rounded-2xl bg-slate-100 transition-all duration-500" 
               />
-              <blockquote className="p-6 relative">
-                <div className="text-white text-lg font-medium">
-                  "Striving to harness data and intelligent systems to create impactful solutions."
-                </div>
-              </blockquote>
+              {/* Decorative Quote */}
+              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg max-w-xs border border-slate-100 hidden md:block animate-bounce-slow">
+                 <p className="text-sm font-medium text-slate-700 italic">"Innovating with AI & Code"</p>
+              </div>
             </div>
           </div>
         </div>

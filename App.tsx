@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Stats from './components/Stats';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
+import AIProjects from './components/AIProjects';
 import Skills from './components/Skills';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
@@ -18,6 +19,7 @@ const App: React.FC = () => {
         <div className="space-y-0">
           <Experience />
           <Projects />
+          <AIProjects />
           <Skills />
         </div>
       </main>

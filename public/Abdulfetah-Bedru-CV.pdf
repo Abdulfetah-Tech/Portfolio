@@ -1,0 +1,131 @@
+%PDF-1.4
+1 0 obj
+<<
+  /Type /Catalog
+  /Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+  /Type /Pages
+  /Kids [3 0 R]
+  /Count 1
+>>
+endobj
+3 0 obj
+<<
+  /Type /Page
+  /Parent 2 0 R
+  /MediaBox [0 0 612 792]
+  /Contents 4 0 R
+  /Resources <<
+    /Font <<
+      /F1 5 0 R
+      /F2 6 0 R
+    >>
+  >>
+>>
+endobj
+4 0 obj
+<<
+  /Length 720
+>>
+stream
+BT
+/F1 20 Tf
+50 740 Td
+(ABDULFETAH BEDRU) Tj
+ET
+BT
+/F2 12 Tf
+50 718 Td
+(Full-Stack Software Engineer | .NET 10 | Angular | PostgreSQL | REST APIs) Tj
+ET
+BT
+/F2 10 Tf
+50 695 Td
+(Email: abdulfetahsultanbedru7@gmail.com | Location: Addis Ababa, Ethiopia | GitHub: Abdulfetah-Tech) Tj
+ET
+BT
+/F1 13 Tf
+50 660 Td
+(PROFESSIONAL PROFILE) Tj
+ET
+BT
+/F2 10 Tf
+50 642 Td
+(Software engineer passionate about building practical, scalable, and maintainable software.) Tj
+50 628 Td
+(Spanning backend APIs in .NET 10, reactive Angular interfaces, PostgreSQL databases, and clean architecture.) Tj
+ET
+BT
+/F1 13 Tf
+50 595 Td
+(EDUCATION) Tj
+ET
+BT
+/F2 10 Tf
+50 577 Td
+(BSc, Computer Science and Engineering - Adama Science and Technology University (ASTU) [2021-2025]) Tj
+ET
+BT
+/F1 13 Tf
+50 545 Td
+(TECHNICAL CURRICULUM TRAINING) Tj
+ET
+BT
+/F2 10 Tf
+50 527 Td
+(Full-Stack Web Application Development with .NET & Angular - Qiyas / Addis Ababa University) Tj
+50 513 Td
+(12 Modules: C#, TypeScript, ASP.NET Core, EF Core 10, REST APIs, SignalR, Angular Signals, Security, xUnit) Tj
+ET
+BT
+/F1 13 Tf
+50 480 Td
+(FEATURED PROJECTS) Tj
+ET
+BT
+/F2 10 Tf
+50 462 Td
+(1. TMS API: Training Management System ASP.NET Core Web API with EF Core, PostgreSQL & OpenAPI) Tj
+50 448 Td
+(2. Fetan Digital Platform: On-demand marketplace connecting homeowners with verified trade professionals) Tj
+50 434 Td
+(3. OneGov: Unified e-government services architecture with SSO, identity policies, and microservices) Tj
+50 420 Td
+(4. Full-Stack TMS: End-to-end Angular + ASP.NET Core + PostgreSQL platform with JWT & SignalR) Tj
+ET
+endstream
+endobj
+5 0 obj
+<<
+  /Type /Font
+  /Subtype /Type1
+  /BaseFont /Helvetica-Bold
+>>
+endobj
+6 0 obj
+<<
+  /Type /Font
+  /Subtype /Type1
+  /BaseFont /Helvetica
+>>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000262 00000 n 
+0000001036 00000 n 
+0000001107 00000 n 
+trailer
+<<
+  /Size 7
+  /Root 1 0 R
+>>
+startxref
+1173
+%%EOF

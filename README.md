@@ -1,20 +1,100 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Abdulfetah Bedru Portfolio
 
-# Run and deploy your AI Studio app
+A modern personal portfolio website built with React, TypeScript, and Vite. It showcases professional experience, technical skills, selected projects, engineering thinking, learning journey, resume access, and contact information in a polished single-page experience.
 
-This contains everything you need to run your app locally.
+## Overview
 
-View your app in AI Studio: https://ai.studio/apps/drive/1iMZkFUMVaifgGy1UQiVXFRet18thRfNz
+This portfolio is designed to present Abdulfetah Bedru as a full-stack software engineer with a strong focus on modern web application development, scalable systems, and high-quality product engineering.
 
-## Run Locally
+The site includes:
 
-**Prerequisites:**  Node.js
+- Hero and introduction section
+- About and profile summary
+- Technical skills breakdown
+- Highlighted projects and case studies
+- Engineering approach and architecture overview
+- Learning journey and training highlights
+- GitHub and resume sections
+- Contact details and CTA actions
+- Light/dark theme support
+- Offline status indicator
 
+## Tech Stack
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- React 19
+- TypeScript
+- Vite
+- HTML/CSS with utility-first styling patterns
+- Recharts
+- Lucide React
+- Google GenAI integration for AI-powered assistant experience
+
+## Project Structure
+
+```text
+.
+├── App.tsx
+├── components/
+├── context/
+├── config/
+├── public/
+├── scripts/
+├── services/
+├── constants.ts
+├── index.html
+├── index.tsx
+├── metadata.json
+├── package.json
+├── tsconfig.json
+├── types.ts
+├── vite.config.ts
+└── bun.lock
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or bun
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run locally
+
+```bash
+npm run dev
+```
+
+Then open the local Vite URL shown in the terminal.
+
+### Production build
+
+```bash
+npm run build
+```
+
+### Preview production build
+
+```bash
+npm run preview
+```
+
+## Scripts
+
+- `npm run dev` — start the development server
+- `npm run build` — build the app for production
+- `npm run preview` — preview the production build
+- `npm run lint` — run TypeScript checks
+
+## Notes
+
+This project is a personal portfolio and may be customized further based on your profile, projects, resume, and preferred deployment target.
+
+## License
+
+This repository does not currently include a license file. If you plan to publish or share it publicly, consider adding an appropriate open-source license.

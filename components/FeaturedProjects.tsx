@@ -344,7 +344,7 @@ const EngineeringMetricsDashboard: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-6">
         
         {/* Metric 1: Lines of Code */}
-        <div className="p-4 sm:p-5 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800 hover:border-purple-300 dark:hover:border-purple-800/60 transition-all">
+        <div className="p-4 sm:p-5 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800 hover:border-purple-300 dark:hover:border-purple-800/60 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider">
               Lines of Code
@@ -380,7 +380,7 @@ const EngineeringMetricsDashboard: React.FC = () => {
         </div>
 
         {/* Metric 2: Test Coverage */}
-        <div className="p-4 sm:p-5 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-800/60 transition-all">
+        <div className="p-4 sm:p-5 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-800/60 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider">
               Test Coverage
@@ -415,7 +415,7 @@ const EngineeringMetricsDashboard: React.FC = () => {
         </div>
 
         {/* Metric 3: Deployment Frequency */}
-        <div className="p-4 sm:p-5 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-800/60 transition-all">
+        <div className="p-4 sm:p-5 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-800/60 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider">
               Deployment Frequency
@@ -447,7 +447,7 @@ const EngineeringMetricsDashboard: React.FC = () => {
         </div>
 
         {/* Metric 4: Performance & Latency */}
-        <div className="p-4 sm:p-5 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800 hover:border-amber-300 dark:hover:border-amber-800/60 transition-all">
+        <div className="p-4 sm:p-5 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800 hover:border-amber-300 dark:hover:border-amber-800/60 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider">
               P99 Response Latency
@@ -611,8 +611,20 @@ const FeaturedProjects: React.FC = () => {
               <div
                 key={project.id}
                 id={`project-${project.id}`}
-                className="rounded-2xl bg-white dark:bg-[#0c121e] border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+                className="group relative rounded-2xl bg-white dark:bg-[#0c121e] border border-slate-200/80 dark:border-slate-800 hover:border-purple-300 dark:hover:border-purple-600/70 shadow-sm hover:shadow-xl dark:hover:shadow-2xl dark:hover:shadow-purple-950/25 transition-all duration-300 ease-out hover:-translate-y-1.5 overflow-hidden will-change-transform"
               >
+                {/* Subtle top edge illumination accent that appears on hover */}
+                <div 
+                  className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500/0 to-transparent group-hover:via-purple-500 dark:group-hover:via-purple-400 transition-all duration-500 pointer-events-none z-10" 
+                  aria-hidden="true"
+                />
+
+                {/* Subtle ambient corner glow on hover */}
+                <div 
+                  className="absolute -top-24 -right-24 w-48 h-48 bg-purple-500/0 group-hover:bg-purple-500/5 dark:group-hover:bg-purple-500/10 rounded-full blur-2xl transition-all duration-500 pointer-events-none" 
+                  aria-hidden="true" 
+                />
+
                 {/* Upper Project Specification Grid */}
                 <div className={`grid grid-cols-1 lg:grid-cols-12 items-stretch ${isEven ? 'lg:flex-row-reverse' : ''}`}>
                   
@@ -621,15 +633,15 @@ const FeaturedProjects: React.FC = () => {
                     <div>
                       {/* Top Meta Bar */}
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                        <span className="text-xs font-mono font-semibold text-purple-700 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2.5 py-1 rounded-md border border-purple-100 dark:border-purple-800/40">
+                        <span className="text-xs font-mono font-semibold text-purple-700 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2.5 py-1 rounded-md border border-purple-100 dark:border-purple-800/40 group-hover:border-purple-200 dark:group-hover:border-purple-700/60 group-hover:bg-purple-100/70 dark:group-hover:bg-purple-900/40 transition-colors duration-200">
                           {project.subtitle}
                         </span>
-                        <span className="text-xs font-mono text-slate-400 dark:text-slate-500">
+                        <span className="text-xs font-mono text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors duration-200">
                           Project 0{index + 1}
                         </span>
                       </div>
 
-                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-2">
+                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-2 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-200">
                         {project.title}
                       </h3>
 
@@ -658,7 +670,7 @@ const FeaturedProjects: React.FC = () => {
                       </p>
 
                       {/* Problem Solved Highlight Box */}
-                      <div className="mb-5 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200/60 dark:border-slate-800 text-xs">
+                      <div className="mb-5 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200/60 dark:border-slate-800 group-hover:border-slate-300 dark:group-hover:border-slate-700/80 transition-colors duration-200 text-xs">
                         <span className="font-mono font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider block mb-1">
                           Problem Solved
                         </span>
@@ -710,7 +722,7 @@ const FeaturedProjects: React.FC = () => {
                         {project.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-2.5 py-0.5 text-[11px] font-mono rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300"
+                            className="px-2.5 py-0.5 text-[11px] font-mono rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-300 dark:hover:border-purple-700 hover:text-purple-700 dark:hover:text-purple-300 transition-colors text-slate-700 dark:text-slate-300"
                           >
                             {tech}
                           </span>
@@ -723,9 +735,9 @@ const FeaturedProjects: React.FC = () => {
                       {project.hasCaseStudy && (
                         <button
                           onClick={() => openCaseStudy(project)}
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-white bg-purple-700 hover:bg-purple-800 dark:bg-purple-600 dark:hover:bg-purple-500 transition-colors shadow-2xs"
+                          className="group/btn inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-white bg-purple-700 hover:bg-purple-800 dark:bg-purple-600 dark:hover:bg-purple-500 transition-all shadow-2xs hover:shadow-sm"
                         >
-                          View Case Study <ChevronRight size={13} />
+                          View Case Study <ChevronRight size={13} className="transition-transform duration-200 group-hover/btn:translate-x-0.5" />
                         </button>
                       )}
 
@@ -734,9 +746,9 @@ const FeaturedProjects: React.FC = () => {
                           href={project.githubUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-850 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700 transition-colors"
+                          className="group/gh inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-850 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-all"
                         >
-                          <Github size={14} /> GitHub Code
+                          <Github size={14} className="transition-transform duration-200 group-hover/gh:rotate-6" /> GitHub Code
                         </a>
                       )}
 
@@ -745,16 +757,16 @@ const FeaturedProjects: React.FC = () => {
                           href={project.demoUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-purple-700 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-950/40 transition-colors"
+                          className="group/demo inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-purple-700 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-950/40 transition-all"
                         >
-                          Live Demo <ExternalLink size={13} />
+                          Live Demo <ExternalLink size={13} className="transition-transform duration-200 group-hover/demo:translate-x-0.5 group-hover/demo:-translate-y-0.5" />
                         </a>
                       )}
                     </div>
                   </div>
 
                   {/* Right / Visual Architectural Blueprint Panel (5 cols) */}
-                  <div className="lg:col-span-5 bg-slate-100/60 dark:bg-[#070b13] p-6 sm:p-8 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-200/80 dark:border-slate-800">
+                  <div className="lg:col-span-5 bg-slate-100/60 dark:bg-[#070b13] group-hover:bg-slate-100/80 dark:group-hover:bg-[#090f1a] p-6 sm:p-8 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-200/80 dark:border-slate-800 group-hover:border-purple-200/50 dark:group-hover:border-purple-900/40 transition-colors duration-300">
                     {project.id === 'flutter-tms-mobile' ? (
                       /* Polished Smartphone Mockup presentation for the Featured Mobile Project (Requirement 4) */
                       <div className="flex flex-col items-center justify-between h-full space-y-4">

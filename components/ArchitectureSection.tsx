@@ -87,6 +87,25 @@ const ArchitectureSection: React.FC = () => {
   const isFlutterNode = activeNode?.label.toLowerCase().includes('flutter');
   const activeAuthItem = AUTH_SUBFLOW_STEPS.find(s => s.id === selectedAuthStep) || AUTH_SUBFLOW_STEPS[0];
 
+  React.useEffect(() => {
+    const handleSelectFlow = (e: CustomEvent<{ flowId?: string; nodeId?: string }>) => {
+      if (e.detail?.flowId) {
+        setActiveFlowId(e.detail.flowId);
+        if (e.detail?.nodeId) {
+          setSelectedNodeId(e.detail.nodeId);
+        } else {
+          const flow = ARCHITECTURE_FLOWS.find(f => f.id === e.detail?.flowId);
+          if (flow && flow.nodes.length > 0) {
+            setSelectedNodeId(flow.nodes[0].id);
+          }
+        }
+      }
+    };
+
+    window.addEventListener('select-architecture-flow', handleSelectFlow as EventListener);
+    return () => window.removeEventListener('select-architecture-flow', handleSelectFlow as EventListener);
+  }, []);
+
   return (
     <section id="architecture" className="py-20 bg-slate-50/50 dark:bg-[#070b13] border-t border-slate-200/80 dark:border-slate-800/80 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

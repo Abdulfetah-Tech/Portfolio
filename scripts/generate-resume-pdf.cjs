@@ -1,37 +1,15 @@
-%PDF-1.4
-1 0 obj
-<<
-  /Type /Catalog
-  /Pages 2 0 R
->>
-endobj
-2 0 obj
-<<
-  /Type /Pages
-  /Kids [3 0 R]
-  /Count 1
->>
-endobj
-3 0 obj
-<<
-  /Type /Page
-  /Parent 2 0 R
-  /MediaBox [0 0 612 792]
-  /Contents 4 0 R
-  /Resources <<
-    /Font <<
-      /F1 5 0 R
-      /F2 6 0 R
-      /F3 7 0 R
-    >>
-  >>
->>
-endobj
-4 0 obj
-<<
-  /Length 4506
->>
-stream
+const fs = require('fs');
+const path = require('path');
+
+// Generates a clean, standard 1-page PDF vector document matching Abdulfetah Sultan Bedru's resume
+function generateResumePdf() {
+  const content = [];
+  
+  // Helper for adding PDF text commands
+  // Standard letter size: 612 x 792 pt
+  // Origin (0,0) is bottom-left, top is 792
+  
+  const stream = `
 BT
 /F2 18 Tf
 205 745 Td
@@ -231,7 +209,7 @@ BT
 10.5 TL
 50 366 Td
 (API Development, Notification Integrations) Tj T*
-((SMS/Delegate Patterns), Event-Driven Architecture) Tj
+(\(SMS/Delegate Patterns\), Event-Driven Architecture) Tj
 ET
 
 % Column 2
@@ -246,7 +224,7 @@ BT
 10.5 TL
 310 406 Td
 (C#, .NET SDK, Scala, Functional Programming, psql) Tj T*
-((PostgreSQL), Asynchronous Programming) Tj
+(\(PostgreSQL\), Asynchronous Programming) Tj
 ET
 
 BT
@@ -278,16 +256,16 @@ ET
 BT
 /F2 9 Tf
 50 310 Td
-(Training Management System (TMS) Backend Suite) Tj
+(Training Management System \(TMS\) Backend Suite) Tj
 ET
 
 BT
 /F1 8 Tf
 10.5 TL
 55 297 Td
-(\(bullet\) Designed and deployed enrollment logic integrating delegate-driven software layers for cross-module) Tj T*
+(\\(bullet\\) Designed and deployed enrollment logic integrating delegate-driven software layers for cross-module) Tj T*
 (   synchronization and multi-tier student data orchestration.) Tj T*
-(\(bullet\) Implemented an event-driven notification component implementing the C# Delegate pattern to decouple) Tj T*
+(\\(bullet\\) Implemented an event-driven notification component implementing the C# Delegate pattern to decouple) Tj T*
 (   SMS/system messaging flows from primary transactional databases.) Tj
 ET
 
@@ -307,7 +285,7 @@ BT
 /F1 8 Tf
 10.5 TL
 55 227 Td
-(\(bullet\) Contributed to a national digital platform integrating government services into a single portal, enhancing) Tj T*
+(\\(bullet\\) Contributed to a national digital platform integrating government services into a single portal, enhancing) Tj T*
 (   efficiency, transparency, and citizen access through secure digital identity and streamlined workflows.) Tj
 ET
 
@@ -327,11 +305,50 @@ BT
 /F1 8 Tf
 10.5 TL
 55 175 Td
-(\(bullet\) As a frontend developer, I successfully integrated dynamic user interfaces with backend databases, ensuring) Tj T*
+(\\(bullet\\) As a frontend developer, I successfully integrated dynamic user interfaces with backend databases, ensuring) Tj T*
 (   seamless data flow and enhancing user experience. My contributions included optimizing performance,) Tj T*
 (   implementing responsive designs, and utilizing APIs for efficient data retrieval and manipulation. This) Tj T*
 (   resulted in improved application responsiveness and user satisfaction.) Tj
 ET
+`;
+
+  const streamBytes = Buffer.from(stream.trim(), 'utf-8');
+
+  const pdf = `%PDF-1.4
+1 0 obj
+<<
+  /Type /Catalog
+  /Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+  /Type /Pages
+  /Kids [3 0 R]
+  /Count 1
+>>
+endobj
+3 0 obj
+<<
+  /Type /Page
+  /Parent 2 0 R
+  /MediaBox [0 0 612 792]
+  /Contents 4 0 R
+  /Resources <<
+    /Font <<
+      /F1 5 0 R
+      /F2 6 0 R
+      /F3 7 0 R
+    >>
+  >>
+>>
+endobj
+4 0 obj
+<<
+  /Length ${streamBytes.length}
+>>
+stream
+${stream.trim()}
 endstream
 endobj
 5 0 obj
@@ -373,3 +390,14 @@ trailer
 startxref
 577
 %%EOF
+`;
+
+  const outPath1 = path.join(__dirname, '../public/Abdulfetah-Bedru-CV.pdf');
+  const outPath2 = path.join(__dirname, '../public/Abdulfetah-Sultan-Bedru-Resume.pdf');
+  
+  fs.writeFileSync(outPath1, pdf, 'utf-8');
+  fs.writeFileSync(outPath2, pdf, 'utf-8');
+  console.log(`Generated resume PDF at ${outPath1} and ${outPath2}`);
+}
+
+generateResumePdf();

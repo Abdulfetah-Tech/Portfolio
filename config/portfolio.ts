@@ -8,23 +8,71 @@ import {
   ArchitectureFlow,
   JourneyMilestone,
   CurriculumModule,
-  GitHubRepo
+  GitHubRepo,
+  WorkExperienceItem
 } from '../types';
 
 export const PORTFOLIO_CONFIG: PersonalProfile = {
-  name: "Abdulfetah Bedru",
+  name: "Abdulfetah Sultan Bedru",
   role: "Full-Stack Software Engineer",
   secondaryCapability: "Web & Mobile Application Developer",
   supportingHeadline: "Building scalable web applications, robust APIs, and cross-platform mobile applications with .NET, Angular, Flutter, PostgreSQL, and cloud-ready architecture.",
   shortIntro: "I build reliable software across the full development lifecycle: Web applications • REST APIs • Mobile applications • Databases • Authentication • Testing.",
   aboutText: "I am a software engineer passionate about building practical, scalable, and maintainable software. My development experience spans backend engineering, RESTful APIs, databases, frontend development, mobile application development, authentication, security, testing, and full-stack application architecture.",
   email: "abdulfetahsultanbedru7@gmail.com",
+  phone: "0940579561",
   location: "Addis Ababa, Ethiopia",
+  portfolioUrl: "https://portfolio-kappa-gray-75.vercel.app",
   github: "https://github.com/Abdulfetah-Tech",
   githubUsername: "Abdulfetah-Tech",
-  linkedin: "https://www.linkedin.com/in/abdulfetah-s-bedru-99212227a",
+  linkedin: "https://linkedin.com/in/abdulfetah-sultan-99212227a",
+  leetcode: "https://leetcode.com/u/Abdulfetah_Sultan",
   cvUrl: "/Abdulfetah-Bedru-CV.pdf"
 };
+
+export const WORK_EXPERIENCE: WorkExperienceItem[] = [
+  {
+    id: "sheger-system",
+    role: "Software Developer",
+    company: "Sheger system",
+    period: "08/2020 – 10/2025",
+    location: "Addis Ababa, Ethiopia",
+    highlights: [
+      "Designed and deployed enrollment logic integrating delegate-driven software layers for cross-module synchronization and multi-tier student data orchestration.",
+      "Implemented an event-driven notification component implementing the C# Delegate pattern to decouple SMS/system messaging flows from primary transactional databases."
+    ]
+  },
+  {
+    id: "neo-ai",
+    role: "Web Developer",
+    company: "NEO AI Technologies",
+    period: "08/2023 – 11/2023",
+    location: "Addis Ababa, Ethiopia",
+    highlights: [
+      "Successfully integrated dynamic user interfaces with backend databases, ensuring seamless data flow and enhancing user experience.",
+      "Optimized application performance, implemented responsive designs, and utilized RESTful APIs for efficient data retrieval and manipulation."
+    ]
+  }
+];
+
+export const RESUME_SKILL_GROUPS = [
+  {
+    title: "Frontend Development",
+    skills: ["HTML5", "CSS3", "JavaScript", "Angular", "React", "UI/UX Implementation", "Responsive Design"]
+  },
+  {
+    title: "Backend & Software Systems",
+    skills: ["C#", ".NET SDK", "Scala", "Functional Programming", "psql (PostgreSQL)", "Asynchronous Programming"]
+  },
+  {
+    title: "Architecture & Infrastructure",
+    skills: ["API Development", "Notification Integrations (SMS/Delegate Patterns)", "Event-Driven Architecture"]
+  },
+  {
+    title: "Tools & Development Ecosystem",
+    skills: ["Linux Terminal", "Git/GitHub", "VS Code", "Environment Provisioning"]
+  }
+];
 
 export const NAV_LINKS: NavLinkItem[] = [
   { label: "Home", href: "#hero" },

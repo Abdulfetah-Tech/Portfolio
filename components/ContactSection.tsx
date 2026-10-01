@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PORTFOLIO_CONFIG } from '../config/portfolio';
-import { Mail, Github, Linkedin, Send, CheckCircle2, AlertCircle, Copy, Check } from 'lucide-react';
+import { Mail, Github, Linkedin, Send, CheckCircle2, AlertCircle, Copy, Check, Phone, Globe, Code2 } from 'lucide-react';
 
 interface ContactFormData {
   name: string;
@@ -127,8 +127,26 @@ const ContactSection: React.FC = () => {
                 </button>
               </div>
 
+              {/* Phone item */}
+              <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-3 overflow-hidden">
+                  <div className="p-2 rounded-lg bg-purple-50 dark:bg-purple-950/80 text-purple-700 dark:text-purple-300 flex-shrink-0">
+                    <Phone size={16} />
+                  </div>
+                  <div className="overflow-hidden">
+                    <span className="text-[10px] font-mono text-slate-400 block uppercase">Direct Phone</span>
+                    <a 
+                      href={`tel:${PORTFOLIO_CONFIG.phone || '0940579561'}`}
+                      className="text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-purple-600 dark:hover:text-purple-400 truncate block font-mono"
+                    >
+                      {PORTFOLIO_CONFIG.phone || '0940579561'}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               {/* Social Channels */}
-              <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="grid grid-cols-2 gap-3 pt-1">
                 <a
                   href={PORTFOLIO_CONFIG.github}
                   target="_blank"
@@ -147,6 +165,26 @@ const ContactSection: React.FC = () => {
                 >
                   <Linkedin size={16} className="text-blue-600 dark:text-blue-400" />
                   <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">LinkedIn</span>
+                </a>
+
+                <a
+                  href={PORTFOLIO_CONFIG.leetcode || "https://leetcode.com/u/Abdulfetah_Sultan"}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800 hover:border-amber-400 dark:hover:border-amber-700 transition-colors flex items-center gap-2.5"
+                >
+                  <Code2 size={16} className="text-amber-500" />
+                  <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">LeetCode</span>
+                </a>
+
+                <a
+                  href={PORTFOLIO_CONFIG.portfolioUrl || "https://portfolio-kappa-gray-75.vercel.app"}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800 hover:border-purple-400 dark:hover:border-purple-700 transition-colors flex items-center gap-2.5"
+                >
+                  <Globe size={16} className="text-purple-600" />
+                  <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 truncate">Vercel App</span>
                 </a>
               </div>
 

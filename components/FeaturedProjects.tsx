@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FEATURED_PROJECTS, PORTFOLIO_ENGINEERING_METRICS } from '../config/portfolio';
 import { ProjectItem, ProjectMilestone, ProjectMetrics } from '../types';
 import { 
@@ -532,6 +532,23 @@ const FeaturedProjects: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  useEffect(() => {
+    const handleSelectProject = (e: CustomEvent<{ projectId?: string; filter?: string }>) => {
+      if (e.detail?.filter && filterTabs.includes(e.detail.filter as any)) {
+        setSelectedFilter(e.detail.filter as any);
+      } else if (e.detail?.projectId) {
+        // Find project and set appropriate filter if current filter hides it
+        const proj = FEATURED_PROJECTS.find(p => p.id === e.detail?.projectId);
+        if (proj && selectedFilter !== 'All' && !proj.filterCategories?.includes(selectedFilter as any)) {
+          setSelectedFilter('All');
+        }
+      }
+    };
+
+    window.addEventListener('select-project', handleSelectProject as EventListener);
+    return () => window.removeEventListener('select-project', handleSelectProject as EventListener);
+  }, [selectedFilter]);
+
   return (
     <section id="projects" className="py-20 bg-slate-50/50 dark:bg-[#070b13] border-t border-slate-200/80 dark:border-slate-800/80 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -593,6 +610,7 @@ const FeaturedProjects: React.FC = () => {
             return (
               <div
                 key={project.id}
+                id={`project-${project.id}`}
                 className="rounded-2xl bg-white dark:bg-[#0c121e] border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
               >
                 {/* Upper Project Specification Grid */}

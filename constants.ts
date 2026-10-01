@@ -5,8 +5,14 @@ export const EDUCATION: EducationItem[] = [
   {
     id: '1',
     degree: "Bachelor of Science - BSc, Computer Science and Engineering",
-    school: "Adama Science and Technology University (ASTU)",
-    date: "2021 - 2025"
+    school: "Adama Science and Technology University",
+    date: "06/2020 – 06/2025"
+  },
+  {
+    id: '2',
+    degree: "Advanced Digital Skill Training in Full-Stack Software Development",
+    school: "Addis Ababa University",
+    date: "01/2026 – Present"
   }
 ];
 

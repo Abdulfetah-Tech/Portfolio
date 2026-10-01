@@ -3,6 +3,7 @@ import { Menu, X, Github, Linkedin, Sun, Moon, ArrowUpRight } from 'lucide-react
 import { PORTFOLIO_CONFIG, NAV_LINKS } from '../config/portfolio';
 import { useTheme } from '../context/ThemeContext';
 import { PWAInstallButton } from './PWAInstallButton';
+import { GlobalSearchBar } from './GlobalSearchBar';
 
 interface HeaderProps {
   onOpenCvModal: () => void;
@@ -25,17 +26,17 @@ const Header: React.FC<HeaderProps> = ({ onOpenCvModal }) => {
     <header
       className={`sticky top-0 z-50 transition-all duration-250 ${
         isScrolled
-          ? 'bg-[#090d16]/90 dark:bg-[#090d16]/90 bg-white/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-xs'
+          ? 'bg-white/90 dark:bg-[#090d16]/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-xs'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 gap-3">
           
           {/* Logo: AB Monogram */}
           <a
             href="#hero"
-            className="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg p-1"
+            className="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg p-1 shrink-0"
             aria-label="Abdulfetah Bedru - Home"
           >
             <div className="w-8 h-8 rounded-lg bg-purple-700 text-white font-mono font-bold flex items-center justify-center text-sm tracking-wider shadow-sm group-hover:bg-purple-600 transition-colors">
@@ -51,13 +52,13 @@ const Header: React.FC<HeaderProps> = ({ onOpenCvModal }) => {
             </div>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2" aria-label="Main Navigation">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="px-3 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-slate-100/70 dark:hover:bg-slate-800/60 rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
+                className="px-2.5 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-slate-100/70 dark:hover:bg-slate-800/60 rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
               >
                 {link.label}
               </a>
@@ -65,14 +66,19 @@ const Header: React.FC<HeaderProps> = ({ onOpenCvModal }) => {
 
             <button
               onClick={onOpenCvModal}
-              className="ml-2 inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 hover:bg-purple-100 dark:hover:bg-purple-900/60 border border-purple-200/80 dark:border-purple-800/60 rounded-md transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
+              className="ml-1 inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 hover:bg-purple-100 dark:hover:bg-purple-900/60 border border-purple-200/80 dark:border-purple-800/60 rounded-md transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
             >
               CV <ArrowUpRight size={12} />
             </button>
           </nav>
 
+          {/* Global Search Bar (Medium & Large screens) */}
+          <div className="hidden sm:block">
+            <GlobalSearchBar />
+          </div>
+
           {/* Right Controls: Install Button, Socials & Theme Toggle */}
-          <div className="hidden sm:flex items-center space-x-2">
+          <div className="hidden sm:flex items-center space-x-1 lg:space-x-1.5 shrink-0">
             <PWAInstallButton />
 
             <a
@@ -83,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenCvModal }) => {
               aria-label="GitHub Profile"
               title="GitHub Profile"
             >
-              <Github size={18} />
+              <Github size={17} />
             </a>
 
             <a
@@ -94,7 +100,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenCvModal }) => {
               aria-label="LinkedIn Profile"
               title="LinkedIn Profile"
             >
-              <Linkedin size={18} />
+              <Linkedin size={17} />
             </a>
 
             {/* Theme Toggle Button */}
@@ -112,25 +118,27 @@ const Header: React.FC<HeaderProps> = ({ onOpenCvModal }) => {
             </button>
           </div>
 
-          {/* Mobile Right Controls: PWA, Theme Toggle & Hamburger Menu */}
-          <div className="flex sm:hidden items-center gap-1.5">
+          {/* Mobile Right Controls: Compact Search, PWA, Theme & Menu */}
+          <div className="flex sm:hidden items-center gap-1">
+            <GlobalSearchBar compact={true} />
+
             <PWAInstallButton />
 
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg text-slate-600 dark:text-amber-400 bg-slate-100 dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/60"
+              className="p-1.5 rounded-lg text-slate-600 dark:text-amber-400 bg-slate-100 dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/60"
               aria-label="Toggle Theme"
             >
-              {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
             </button>
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg"
+              className="p-1.5 text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg"
               aria-label="Toggle navigation menu"
               aria-expanded={isMenuOpen}
             >
-              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -139,7 +147,12 @@ const Header: React.FC<HeaderProps> = ({ onOpenCvModal }) => {
       {/* Mobile Drawer */}
       {isMenuOpen && (
         <div className="md:hidden bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-xl transition-all">
-          <div className="px-4 pt-2 pb-5 space-y-1">
+          <div className="px-4 pt-3 pb-5 space-y-2">
+            {/* Search option in mobile menu */}
+            <div className="pb-2">
+              <GlobalSearchBar />
+            </div>
+
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}

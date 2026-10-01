@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PORTFOLIO_CONFIG } from '../config/portfolio';
 import { 
   Server, 
@@ -9,8 +9,15 @@ import {
   Layers, 
   Cpu, 
   Code2, 
-  GitBranch 
+  GitBranch,
+  FileText,
+  ExternalLink,
+  Sparkles,
+  ArrowRight,
+  RefreshCw,
+  Github
 } from 'lucide-react';
+import { fetchPortfolioReadme, GitHubReadmeData } from '../services/githubReadmeService';
 
 const ENGINEERING_PILLARS = [
   {
@@ -72,22 +79,162 @@ const SKILL_PROGRESSION = [
 ];
 
 const About: React.FC = () => {
+  const [readmeData, setReadmeData] = useState<GitHubReadmeData | null>(null);
+  const [showReadmeOverview, setShowReadmeOverview] = useState<boolean>(false);
+  const [loadingReadme, setLoadingReadme] = useState<boolean>(true);
+
+  useEffect(() => {
+    let mounted = true;
+    fetchPortfolioReadme()
+      .then((data) => {
+        if (mounted) {
+          setReadmeData(data);
+          setLoadingReadme(false);
+        }
+      })
+      .catch((err) => {
+        console.warn('Could not fetch portfolio README in About section:', err);
+        if (mounted) setLoadingReadme(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const openReadmeInGitHubSection = () => {
+    window.dispatchEvent(new CustomEvent('open-github-readme'));
+    const el = document.getElementById('github');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="about" className="py-20 bg-slate-50/50 dark:bg-[#070b13] border-t border-slate-200/80 dark:border-slate-800/80 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-12">
-          <span className="text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-widest block mb-2">
-            Engineering Profile
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            About Me
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
-            "{PORTFOLIO_CONFIG.aboutText}"
-          </p>
+        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-12">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-widest block">
+                Engineering Profile
+              </span>
+              <span className="text-slate-300 dark:text-slate-700">•</span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/60">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Synced with GitHub README</span>
+              </span>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              About Me
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+              "{PORTFOLIO_CONFIG.aboutText}"
+            </p>
+          </div>
+
+          {/* Quick README Integration Card */}
+          <div className="lg:w-80 shrink-0 p-4 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 shadow-2xs">
+            <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 mb-2 pb-2 border-b border-slate-100 dark:border-slate-800">
+              <span className="flex items-center gap-1.5 font-semibold text-slate-900 dark:text-white">
+                <Github size={13} className="text-purple-600 dark:text-purple-400" />
+                <span>Repository README</span>
+              </span>
+              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
+                {readmeData?.isLive ? 'Live Sync' : 'Active'}
+              </span>
+            </div>
+
+            <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 mb-3 leading-relaxed">
+              {readmeData?.overviewText || "This portfolio is designed to present Abdulfetah Bedru as a full-stack software engineer with a strong focus on modern web application development, scalable systems, and high-quality product engineering."}
+            </p>
+
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={() => setShowReadmeOverview(!showReadmeOverview)}
+                className="w-full text-center px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              >
+                {showReadmeOverview ? "Hide Dynamic Notes" : "View Dynamic Spec Notes"}
+              </button>
+              <button
+                onClick={openReadmeInGitHubSection}
+                className="w-full flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-colors"
+              >
+                <FileText size={13} />
+                <span>Read Full Rendered README</span>
+                <ArrowRight size={12} />
+              </button>
+            </div>
+          </div>
         </div>
+
+        {/* Dynamic README Expanded Notes Drawer */}
+        {showReadmeOverview && readmeData && (
+          <div className="mb-12 p-6 rounded-2xl bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-900/60 shadow-inner transition-all">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-purple-200/60 dark:border-purple-800/60">
+              <div className="flex items-center gap-2">
+                <FileText size={18} className="text-purple-600 dark:text-purple-400" />
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-mono">
+                  Dynamic Portfolio Specification ({readmeData.repoName}/README.md)
+                </h3>
+              </div>
+              <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                Fetched from main branch • {readmeData.fetchedAt}
+              </div>
+            </div>
+
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+              {readmeData.overviewText}
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-mono">
+              <div className="p-3 rounded-lg bg-white/80 dark:bg-slate-900/80 border border-purple-200/60 dark:border-purple-900/40">
+                <div className="font-bold text-purple-700 dark:text-purple-300 mb-1.5">Site Architecture Modules</div>
+                <ul className="space-y-1 text-slate-600 dark:text-slate-400 text-[11px]">
+                  {readmeData.highlights.slice(0, 5).map((h, i) => (
+                    <li key={i} className="flex items-center gap-1.5">
+                      <span className="w-1 h-1 rounded-full bg-purple-500"></span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="p-3 rounded-lg bg-white/80 dark:bg-slate-900/80 border border-purple-200/60 dark:border-purple-900/40">
+                <div className="font-bold text-purple-700 dark:text-purple-300 mb-1.5">Verified Tech Stack</div>
+                <ul className="space-y-1 text-slate-600 dark:text-slate-400 text-[11px]">
+                  {readmeData.techStack.map((tech, i) => (
+                    <li key={i} className="flex items-center gap-1.5">
+                      <span className="w-1 h-1 rounded-full bg-emerald-500"></span>
+                      <span>{tech}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="p-3 rounded-lg bg-white/80 dark:bg-slate-900/80 border border-purple-200/60 dark:border-purple-900/40 flex flex-col justify-between">
+                <div>
+                  <div className="font-bold text-purple-700 dark:text-purple-300 mb-1">Source Repository</div>
+                  <p className="text-[11px] text-slate-600 dark:text-slate-400 mb-2">
+                    Managed publicly on GitHub with continuous integration and verification.
+                  </p>
+                </div>
+                <a
+                  href={`https://github.com/${PORTFOLIO_CONFIG.githubUsername}/Portfolio`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[11px] text-purple-600 dark:text-purple-400 hover:underline font-semibold"
+                >
+                  <span>github.com/{PORTFOLIO_CONFIG.githubUsername}/Portfolio</span>
+                  <ExternalLink size={11} />
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Visual Pillars Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">

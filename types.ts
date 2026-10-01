@@ -11,7 +11,19 @@ export interface PersonalProfile {
   github: string;
   githubUsername: string;
   linkedin: string;
+  leetcode?: string;
+  portfolioUrl?: string;
   cvUrl: string;
+}
+
+export interface WorkExperienceItem {
+  id: string;
+  role: string;
+  company: string;
+  period: string;
+  location: string;
+  description?: string;
+  highlights?: string[];
 }
 
 export interface NavLinkItem {

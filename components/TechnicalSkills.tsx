@@ -73,6 +73,22 @@ const TechnicalSkills: React.FC = () => {
     'Testing'
   ];
 
+  React.useEffect(() => {
+    const handleSelectSkill = (e: CustomEvent<{ category?: string; skill?: string }>) => {
+      if (e.detail?.category && categories.includes(e.detail.category)) {
+        setSelectedCategory(e.detail.category);
+      }
+      if (e.detail?.skill) {
+        setSearchQuery(e.detail.skill);
+      } else {
+        setSearchQuery('');
+      }
+    };
+
+    window.addEventListener('select-skill', handleSelectSkill as EventListener);
+    return () => window.removeEventListener('select-skill', handleSelectSkill as EventListener);
+  }, []);
+
   const filteredCategories = useMemo(() => {
     return SKILL_CATEGORIES.map(group => {
       const isCategoryMatch = selectedCategory === 'All' || group.category === selectedCategory;
